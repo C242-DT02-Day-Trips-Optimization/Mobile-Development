@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/labelWelcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome, username!"
+            style="@style/heading2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/labelLatest"/>
+
+        <TextView
+            android:id="@+id/labelLatest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your latest trip"
+            style="@style/heading3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelWelcome"
+            app:layout_constraintBottom_toTopOf="@id/viewLatest"/>
+
+        <LinearLayout
+            android:id="@+id/viewLatest"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/rounded_background"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/labelSuggest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/labelLatest">
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/labelSuggest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suggestion for you"
+            style="@style/heading3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewLatest"
+            app:layout_constraintBottom_toTopOf="@id/viewSuggest"/>
+
+        <LinearLayout
+            android:id="@+id/viewSuggest"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_background"
+            app:layout_constraintTop_toBottomOf="@+id/labelSuggest"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
