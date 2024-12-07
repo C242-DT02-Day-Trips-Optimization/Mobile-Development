@@ -3,6 +3,8 @@
     <style name="Base.Theme.DayTripsOptimization" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/primary100</item>
+        <item name="colorOnPrimary">@color/white</item>
+
         <item name="colorPrimaryContainer">@color/primary100</item>
         <item name="colorOnPrimaryContainer">@color/white</item>
 

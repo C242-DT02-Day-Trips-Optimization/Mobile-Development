@@ -13,4 +13,17 @@
         <item name="android:textSize">@dimen/heading3</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="primaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primary100</item>
+        <item name="textFillColor">@android:color/white</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="inputField">
+        <item name="boxCornerRadiusTopStart">8dp</item>
+        <item name="boxCornerRadiusTopEnd">8dp</item>
+        <item name="boxCornerRadiusBottomStart">8dp</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+    </style>
 </resources>
