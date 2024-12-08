@@ -13,7 +13,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarDestination"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
@@ -39,10 +39,12 @@
                 android:id="@+id/layoutInputContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical"
+                android:layout_marginStart="28dp"
+                android:layout_marginEnd="28dp"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnNewTrip"
+                android:id="@+id/btnDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:text="Next"
