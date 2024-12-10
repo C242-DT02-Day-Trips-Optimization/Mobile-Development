@@ -10,7 +10,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    fun getApiService(context: Context): ApiService {
+    private const val AUTH_BASE_URL = "https://auth-api-996559796971.asia-southeast2.run.app/"
+    private const val CLUSTERING_BASE_URL = "https://clustering-api-996559796971.asia-southeast2.run.app/"
+
+    fun getAuthApiService(context: Context): ApiService {
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val userPreferences = UserPreferences(context)
         val authInterceptor = Interceptor { chain ->
@@ -25,11 +28,22 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .addInterceptor(authInterceptor)
             .build()
+
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://auth-api-996559796971.asia-southeast2.run.app/")
+            .baseUrl(AUTH_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
+
+        return retrofit.create(ApiService::class.java)
+    }
+
+    fun getClusteringApiService(): ApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(CLUSTERING_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
         return retrofit.create(ApiService::class.java)
     }
 }

@@ -60,8 +60,9 @@ class RegisterActivity : AppCompatActivity() {
                 val username = usernameEditText.text.toString()
                 val email = emailEditText.text.toString()
                 val password = passwordEditText.text.toString()
+                val confirmPassword = confirmPasswordEditText.text.toString()
 
-                performRegister(username, email, password)
+                performRegister(username, email, password, confirmPassword)
             }
 
             loginTextView.setOnClickListener {
@@ -71,8 +72,8 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun performRegister(username: String, email: String, password: String) {
-        viewModel.register(username, email, password).observe(this) { result ->
+    private fun performRegister(username: String, email: String, password: String, confirmPassword: String) {
+        viewModel.register(username, email, password, confirmPassword).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.registerButton.isEnabled = false  // Disable button saat loading

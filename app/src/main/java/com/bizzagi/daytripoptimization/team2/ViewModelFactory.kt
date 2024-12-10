@@ -28,7 +28,7 @@ class ViewModelFactory(private val repository: AuthRepository) : ViewModelProvid
         private var instance: ViewModelFactory? = null
         fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository(context))
+                instance ?: ViewModelFactory(Injection.provideAuthRepository(context)) // Memperbaiki pemanggilan metode
             }.also { instance = it }
     }
 }
