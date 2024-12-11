@@ -15,6 +15,22 @@ class UserPreferences(context: Context) {
         return prefs.getString("token", null)
     }
 
+    fun setEmail(email: String) {
+        prefs.edit { putString("email", email) }
+    }
+
+    fun getEmail(): String? {
+        return prefs.getString("email", null)
+    }
+
+    fun setUsername(username: String) {
+        prefs.edit { putString("username", username) }
+    }
+
+    fun getUsername(): String? {
+        return prefs.getString("username", null)
+    }
+
     fun clear() {
         prefs.edit().clear().apply()
     }

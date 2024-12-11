@@ -3,11 +3,13 @@ package com.bizzagi.daytripoptimization.team2.ui.home
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import com.bizzagi.daytripoptimization.team2.databinding.FragmentNewTripSheetBinding
+import android.widget.Toast
+import com.bizzagi.daytripoptimization.team2 .databinding.FragmentNewTripSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -22,7 +24,6 @@ class NewTripSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentNewTripSheetBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -49,15 +50,21 @@ class NewTripSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnNewTrip.setOnClickListener {
-            val intent = Intent(requireContext(), NewDestinationActivity::class.java)
-
+            val province = binding.inputTrip.editText?.text.toString()
+            if (province.isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter a province", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            Log.d("NewTripSheetFragment", "Sending province: $province") // Log untuk debugging
+            val intent = Intent(requireContext(), NewDestinationActivity::class.java).apply {
+                putExtra("PROVINCE", province)
+            }
             startActivity(intent)
         }
     }
 
     override fun onStart() {
         super.onStart()
-
         dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         dialog?.window?.setLayout(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -67,7 +74,6 @@ class NewTripSheetFragment : BottomSheetDialogFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

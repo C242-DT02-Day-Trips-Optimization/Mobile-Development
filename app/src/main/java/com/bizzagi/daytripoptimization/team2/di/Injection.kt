@@ -12,7 +12,7 @@ object Injection {
     }
 
     fun provideClusteringRepository(): ClusteringRepository {
-        val apiService = ApiConfig.getClusteringApiService() // Memanggil metode untuk klustering
+        val apiService = ApiConfig.getClusteringApiService()
         return ClusteringRepository.getInstance(apiService)
     }
 }
