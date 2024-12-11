@@ -24,32 +24,19 @@ class MainActivity : AppCompatActivity() {
                 .commit()
         }
 
-        binding.fabNewTrip.setOnClickListener {
-            val bottomSheet = NewTripSheetFragment()
-
-            bottomSheet.show(supportFragmentManager, "NewDestinationSheetFragment")
-        }
-
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
                     loadFragment(HomeFragment())
-
-                    binding.fabNewTrip.show()
-
                     true
                 }
                 R.id.nav_history -> {
                     loadFragment(HistoryFragment())
 
-                    binding.fabNewTrip.hide()
-
                     true
                 }
                 R.id.nav_profile -> {
                     loadFragment(ProfileFragment())
-
-                    binding.fabNewTrip.hide()
 
                     true
                 }

@@ -1,5 +1,6 @@
 package com.bizzagi.daytripoptimization.team2.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnNewTrip.setOnClickListener {
+            val intent = Intent(requireContext(), NewDestinationActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

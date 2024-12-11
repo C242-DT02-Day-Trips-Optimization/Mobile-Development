@@ -22,19 +22,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="?android:attr/windowBackground"
+        android:background="@color/white40"
         android:elevation="8dp"
         app:menu="@menu/bottom_navigation" />
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabNewTrip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="New"
-        app:icon="@drawable/ic_new"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

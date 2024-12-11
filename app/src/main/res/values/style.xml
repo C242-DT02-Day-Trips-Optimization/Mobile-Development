@@ -21,6 +21,7 @@
     </style>
 
     <style name="inputField">
+        <item name="boxBackgroundColor">@color/white</item>
         <item name="boxCornerRadiusTopStart">8dp</item>
         <item name="boxCornerRadiusTopEnd">8dp</item>
         <item name="boxCornerRadiusBottomStart">8dp</item>

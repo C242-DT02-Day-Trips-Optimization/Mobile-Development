@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/viewLatest"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="16dp"
+    android:layout_marginStart="28dp"
+    android:layout_marginEnd="28dp"
+    android:background="@drawable/outline_section" >
+
+    <TextView
+        android:id="@+id/historyDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trip Destination"
+        style="@style/heading3" />
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="1dp"
+        android:background="@color/primary100"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/historyTotalDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Days"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:layout_marginStart="28dp" />
+
+    <TextView
+        android:id="@+id/historyTotalDestination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Destination"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"/>
+</LinearLayout>

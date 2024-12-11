@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,20 +14,30 @@
         android:text="Optimization History"
         style="@style/heading2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/line_divider"/>
 
-    <LinearLayout
-        android:id="@+id/viewLatest"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
+    <View
+        android:id="@+id/line_divider"
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:background="@color/primary100"
         android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/rounded_background"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelOptimization">
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/labelOptimization"/>
+
+    <!--  TODO: uncomment the recycler view while applying the app logic  -->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/viewHistory"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/line_divider">-->
+<!--        -->
+<!--    </androidx.recyclerview.widget.RecyclerView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

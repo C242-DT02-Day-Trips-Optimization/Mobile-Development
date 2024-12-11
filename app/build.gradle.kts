@@ -57,5 +57,6 @@ dependencies {
     implementation (libs.logging.interceptor)
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.play.services.maps)
     implementation(kotlin("script-runtime"))
 }

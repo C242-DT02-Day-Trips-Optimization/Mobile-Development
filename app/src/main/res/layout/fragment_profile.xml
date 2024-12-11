@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.history.HistoryFragment">
+    tools:context=".ui.profile.ProfileFragment">
 
     <TextView
         android:id="@+id/labelProfile"
@@ -13,20 +13,103 @@
         android:text="User Profile"
         style="@style/heading2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/line_divider"/>
+
+    <View
+        android:id="@+id/line_divider"
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:background="@color/primary100"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelProfile"
+        app:layout_constraintBottom_toTopOf="@id/sectionEmail"/>
 
     <LinearLayout
-        android:id="@+id/viewLatest"
+        android:id="@+id/sectionEmail"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
-        android:background="@drawable/rounded_background"
+        android:background="@drawable/outline_section"
         android:orientation="vertical"
+        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelProfile">
+        app:layout_constraintTop_toBottomOf="@+id/line_divider"
+        app:layout_constraintBottom_toTopOf="@+id/sectionUsername">
+
+        <TextView
+            android:id="@+id/labelEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/loggedEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="your_email@example.com"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sectionUsername"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/outline_section"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionEmail">
+
+        <TextView
+            android:id="@+id/labelUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/loggedUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="your_username"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTint="@color/white40"
+        android:text="Logout"
+        android:textColor="@color/design_default_color_error"
+        android:icon="@drawable/ic_logout"
+        app:iconGravity="start"
+        app:iconSize="28dp"
+        app:strokeColor="@color/design_default_color_error"
+        app:strokeWidth="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sectionUsername"
+        style="@style/primaryButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
         <TextView
             android:id="@+id/labelWelcome"
@@ -19,56 +19,64 @@
             style="@style/heading2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/labelLatest"/>
+            app:layout_constraintBottom_toTopOf="@id/imgHero"/>
 
-        <TextView
-            android:id="@+id/labelLatest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your latest trip"
-            style="@style/heading3"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelWelcome"
-            app:layout_constraintBottom_toTopOf="@id/viewLatest"/>
-
-        <LinearLayout
-            android:id="@+id/viewLatest"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
+        <ImageView
+            android:id="@+id/imgHero"
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
-            android:background="@drawable/rounded_background"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/labelSuggest"
+            android:src="@drawable/ic_new_trip"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/labelLatest">
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/labelWelcome"
+            app:layout_constraintBottom_toTopOf="@id/labelNewTrip"/>
 
         <TextView
-            android:id="@+id/labelSuggest"
-            android:layout_width="wrap_content"
+            android:id="@+id/labelNewTrip"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suggestion for you"
+            android:text="Where do you want to go?"
             style="@style/heading3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewLatest"
-            app:layout_constraintBottom_toTopOf="@id/viewSuggest"/>
+            app:layout_constraintTop_toBottomOf="@+id/imgHero"
+            app:layout_constraintBottom_toTopOf="@id/inputTrip"/>
 
-        <LinearLayout
-            android:id="@+id/viewSuggest"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputTrip"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:hint="Enter State or Province"
             android:layout_marginStart="28dp"
             android:layout_marginEnd="28dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/rounded_background"
-            app:layout_constraintTop_toBottomOf="@+id/labelSuggest"
-            app:layout_constraintStart_toStartOf="parent">
+            style="@style/inputField"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/labelNewTrip"
+            app:layout_constraintBottom_toTopOf="@+id/btnNewTrip">
 
-        </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/valueTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnNewTrip"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Next"
+            style="@style/primaryButton"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputTrip"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

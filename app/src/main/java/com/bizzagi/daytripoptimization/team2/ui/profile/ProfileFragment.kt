@@ -14,8 +14,16 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+
+        // !TODO: Set email dan password user yang masuk ke aplikasi
+        // binding.loggedEmail.text =
+        // binding.loggedUsername.text =
+
+        binding.btnLogout.setOnClickListener {
+            // !TODO: implementasi action ketika button logout di klik
+        }
 
         return binding.root
     }

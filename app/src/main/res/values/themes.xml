@@ -2,6 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.DayTripsOptimization" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:windowBackground">@color/white80</item>
+
         <item name="colorPrimary">@color/primary100</item>
         <item name="colorOnPrimary">@color/white</item>
 
