@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -58,5 +59,10 @@ dependencies {
     implementation (libs.kotlinx.coroutines.android)
     implementation (libs.kotlinx.coroutines.core)
     implementation (libs.play.services.maps)
+    implementation(libs.androidx.room.runtime)
+    implementation("androidx.room:room-ktx:2.6.1")
+
     implementation(kotlin("script-runtime"))
+
+    ksp(libs.androidx.room.compiler)
 }

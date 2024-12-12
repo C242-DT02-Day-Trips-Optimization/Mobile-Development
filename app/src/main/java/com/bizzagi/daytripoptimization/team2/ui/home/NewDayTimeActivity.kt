@@ -4,6 +4,7 @@ import android.content.Intent
 import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -93,10 +94,13 @@ class NewDayTimeActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 try {
+                    // Show ProgressBar
+                    binding.progressBar.visibility = View.VISIBLE
+
                     val result = clusteringRepository.getRecommendation(clusteringRequest)
-                    when(result) {
+                    when (result) {
                         is Result.Success -> {
-                            Log.d("NewDayTimeActivity", "Input: ${totalDays}")
+                            Log.d("NewDayTimeActivity", "Input: $totalDays")
                             Log.d("NewDayTimeActivity", "Rekomendasi: ${result.data.recommended_days}")
 
                             if (totalDays != result.data.recommended_days) {
@@ -104,23 +108,27 @@ class NewDayTimeActivity : AppCompatActivity() {
                                     .setTitle("Reminder")
                                     .setIcon(R.drawable.ic_reminder)
                                     .setMessage("RECOMMENDATION: ${result.data.recommended_days} Days \n\nYour plan might not be optimal.\nAre you sure?")
-                                    .setPositiveButton("Yes, Proceed") { dialog, which ->
+                                    .setPositiveButton("Yes, Proceed") { dialog, _ ->
                                         // Handle the positive button action
                                         lifecycleScope.launch {
                                             try {
-                                                val newResult = clusteringRepository.getClusteringRecommendation(clusteringRequest)
+                                                // Show ProgressBar again for nested API call
+                                                binding.progressBar.visibility = View.VISIBLE
 
+                                                val newResult = clusteringRepository.getClusteringRecommendation(clusteringRequest)
                                                 handleApiResponse(newResult, clusteringRequest)
                                             } catch (e: Exception) {
-                                                // Log pengecualian
                                                 Log.e("NewDayTimeActivity", "Exception occurred while calling API: ${e.message}", e)
                                                 Toast.makeText(this@NewDayTimeActivity, "An error occurred while calling the API", Toast.LENGTH_SHORT).show()
+                                            } finally {
+                                                // Hide ProgressBar
+                                                binding.progressBar.visibility = View.GONE
                                             }
                                         }
 
                                         dialog.dismiss()
                                     }
-                                    .setNegativeButton("Cancel") { dialog, which ->
+                                    .setNegativeButton("Cancel") { dialog, _ ->
                                         dialog.dismiss()
                                     }
                                     .show()
@@ -129,22 +137,22 @@ class NewDayTimeActivity : AppCompatActivity() {
                             }
                         }
                         is Result.Error -> {
-                            // Log error message
                             Log.e("NewDayTimeActivity", "Error occurred: ${result.error}")
-                            // Show error message
                             Toast.makeText(this@NewDayTimeActivity, "An error occurred: ${result.error}", Toast.LENGTH_SHORT).show()
                         }
                         Result.Loading -> {
-                            // Handle loading state if needed
                             Log.d("NewDayTimeActivity", "Loading data...")
                         }
                     }
                 } catch (e: Exception) {
-                    // Log pengecualian
                     Log.e("NewDayTimeActivity", "Exception occurred while calling API: ${e.message}", e)
                     Toast.makeText(this@NewDayTimeActivity, "An error occurred while calling the API", Toast.LENGTH_SHORT).show()
+                } finally {
+                    // Hide ProgressBar after completion
+                    binding.progressBar.visibility = View.GONE
                 }
             }
+
         }
     }
 

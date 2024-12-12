@@ -1,14 +1,19 @@
 package com.bizzagi.daytripoptimization.team2.ui.result
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bizzagi.daytripoptimization.team2.MainActivity
 import com.bizzagi.daytripoptimization.team2.R
 import com.bizzagi.daytripoptimization.team2.adapter.ClusterAdapter
 import com.bizzagi.daytripoptimization.team2.data.request.ClusteringRequest
 import com.bizzagi.daytripoptimization.team2.data.response.ClusteringResponse
+import com.bizzagi.daytripoptimization.team2.database.TripHistoryEntity
+import com.bizzagi.daytripoptimization.team2.database.TripResultDatabase
 import com.bizzagi.daytripoptimization.team2.databinding.ActivityTripResultBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -18,6 +23,11 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.gson.Gson
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.UUID
 
 class TripResultActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityTripResultBinding
@@ -30,7 +40,10 @@ class TripResultActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         binding.toolbarResult.setNavigationOnClickListener {
-            finish()
+            // Start MainActivity when the back button is clicked
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()  // Optional: finish the current activity if you want to remove it from the back stack
         }
 
         // Mendapatkan data dari intent
@@ -50,6 +63,9 @@ class TripResultActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Mengatur adapter untuk RecyclerView
         recyclerView.adapter = adapter
+
+        // Simpan data ke local history
+        saveTripToLocalHistory(clusterData, clusterRequest)
 
         // Inisialisasi SupportMapFragment untuk peta
         val mapFragment = supportFragmentManager
@@ -94,5 +110,28 @@ class TripResultActivity : AppCompatActivity(), OnMapReadyCallback {
                 .title(title)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
         )
+    }
+
+    // Fungsi untuk menyimpan data ke lokal database
+    private fun saveTripToLocalHistory(
+        clusterData: ClusteringResponse,
+        clusterRequest: ClusteringRequest
+    ) {
+        // Create a new TripHistory object
+        val totalDestination = clusterRequest.points.size
+        val tripHistory = TripHistoryEntity(
+            id = UUID.randomUUID().toString(),
+            province = clusterRequest.province,
+            totalDays = clusterRequest.num_clusters,
+            totalDestination = totalDestination, // Isi kolom baru
+            clusterData = Gson().toJson(clusterData),
+            clusterDestination = Gson().toJson(clusterRequest)
+        )
+
+        // Simpan ke database menggunakan coroutine
+        lifecycleScope.launch {
+            val db = TripResultDatabase.getDatabase(this@TripResultActivity)
+            db.tripHistoryDao().insertTripHistory(tripHistory)
+        }
     }
 }
