@@ -18,5 +18,6 @@ data class ScheduleItem(
     val name: String,
     val avg_duration: Int,
     val travel_time: Int?, // Nullable if no data
-    val mode: String? // Nullable if no data
+    val mode: String?, // Nullable if no data
+    val coordinates: List<Double>? = null
 ) : Serializable

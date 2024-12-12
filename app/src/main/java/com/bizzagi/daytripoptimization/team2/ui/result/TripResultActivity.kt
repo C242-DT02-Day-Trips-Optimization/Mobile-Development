@@ -1,8 +1,14 @@
 package com.bizzagi.daytripoptimization.team2.ui.result
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bizzagi.daytripoptimization.team2.R
+import com.bizzagi.daytripoptimization.team2.adapter.ClusterAdapter
+import com.bizzagi.daytripoptimization.team2.data.request.ClusteringRequest
+import com.bizzagi.daytripoptimization.team2.data.response.ClusteringResponse
 import com.bizzagi.daytripoptimization.team2.databinding.ActivityTripResultBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -27,33 +33,60 @@ class TripResultActivity : AppCompatActivity(), OnMapReadyCallback {
             finish()
         }
 
+        // Mendapatkan data dari intent
+        val clusterData = intent.getSerializableExtra("CLUSTER_DATA") as ClusteringResponse
+        val clusterRequest = intent.getSerializableExtra("CLUSTER_DESTINATION") as ClusteringRequest
+
+        Log.d("TripResultActivity", "$clusterData")
+
+        // Membuat adapter untuk RecyclerView
+        val adapter = ClusterAdapter(clusterData.grouped_clusters)
+
+        // Membuat RecyclerView
+        val recyclerView = findViewById<RecyclerView>(R.id.viewDayTrip)
+
+        // Mengatur layout manager untuk RecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        // Mengatur adapter untuk RecyclerView
+        recyclerView.adapter = adapter
+
+        // Inisialisasi SupportMapFragment untuk peta
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.resultMap) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+            .findFragmentById(R.id.resultMap) as? SupportMapFragment
+        mapFragment?.getMapAsync(this)
     }
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
 
-        // Example of custom location
-        val locations = listOf(
-            Pair(LatLng(-7.2482, 112.7356), "House of Sampoerna"),
-            Pair(LatLng(-7.2458, 112.7374), "Tugu Pahlawan"),
-            Pair(LatLng(-7.2656, 112.7461), "Submarine Monument")
-        )
+        // Mendapatkan data koordinat dari clusterRequest untuk menampilkan marker
+        val clusterRequest = intent.getSerializableExtra("CLUSTER_DESTINATION") as ClusteringRequest
+        val locations = mutableListOf<Pair<LatLng, String>>()
 
-        // Add markers and build bounds
+        // Mengambil data lat dan long dari clusterRequest untuk setiap point
+        for (point in clusterRequest.points) {
+            val lat = point.coordinates[0] // Latitude
+            val long = point.coordinates[1] // Longitude
+            val title = point.name
+
+            // Menambahkan lokasi dan nama ke list
+            locations.add(Pair(LatLng(lat, long), title))
+        }
+
+        // Menambahkan marker pada peta
         val boundsBuilder = LatLngBounds.Builder()
         for (location in locations) {
             addMarker(location.first, location.second)
-            boundsBuilder.include(location.first) // Include each location in bounds
+            boundsBuilder.include(location.first) // Menambahkan lokasi ke bounds untuk memperbesar peta
         }
 
+        // Menyesuaikan kamera ke bounds untuk memastikan semua marker terlihat
         val bounds = boundsBuilder.build()
         googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 180))
     }
 
-    // Function to add marker using lat and long
+    // Fungsi untuk menambahkan marker pada peta
     private fun addMarker(position: LatLng, title: String) {
         googleMap.addMarker(
             MarkerOptions()

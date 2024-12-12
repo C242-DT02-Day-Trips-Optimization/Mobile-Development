@@ -23,31 +23,52 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
-        TODO: remove the include and uncomment the recyclerview while applying the app logic
-        Note: use layout below to loop the item list (per day)
+            <TextView
+                android:id="@+id/resultDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preview Maps"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp" />
 
-        -->
-        <include
-            layout="@layout/item_result_trip" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="16dp"
+                android:background="@drawable/outline_section">
+                <fragment
+                    android:id="@+id/resultMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:name="com.google.android.gms.maps.SupportMapFragment" />
+            </LinearLayout>
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:paddingTop="16dp"-->
-<!--            android:paddingBottom="16dp"-->
-<!--            android:paddingStart="28dp"-->
-<!--            android:paddingEnd="28dp">-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/viewDayTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-<!--        </androidx.recyclerview.widget.RecyclerView>-->
-    </LinearLayout>
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

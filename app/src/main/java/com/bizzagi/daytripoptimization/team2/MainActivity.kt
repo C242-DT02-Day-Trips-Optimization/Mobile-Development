@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bizzagi.daytripoptimization.team2.databinding.ActivityMainBinding
-import com.bizzagi.daytripoptimization.team2.ui.home.NewTripSheetFragment
 import com.bizzagi.daytripoptimization.team2.ui.history.HistoryFragment
 import com.bizzagi.daytripoptimization.team2.ui.home.HomeFragment
 import com.bizzagi.daytripoptimization.team2.ui.profile.ProfileFragment

@@ -34,4 +34,9 @@ interface ApiService {
     suspend fun getClusteringRecommendation(
         @Body request: ClusteringRequest
     ): ClusteringResponse
+
+    @POST("recommend/")
+    suspend fun getRecommendation(
+        @Body request: ClusteringRequest
+    ): ClusteringResponse
 }

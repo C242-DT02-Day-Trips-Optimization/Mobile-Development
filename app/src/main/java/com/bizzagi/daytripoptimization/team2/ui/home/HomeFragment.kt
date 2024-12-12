@@ -8,12 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bizzagi.daytripoptimization.team2.data.pref.UserPreferences
 import com.bizzagi.daytripoptimization.team2.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var userPreferences: UserPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +23,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        userPreferences = UserPreferences(requireContext())
+
+        binding.labelWelcome.text = "Welcome, ${userPreferences.getUsername()}"
 
         return binding.root
     }
