@@ -11,8 +11,6 @@
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Figma Design](#figma-design)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Description
 Roamio (Day Trips Optimization) is an Android application designed to help users plan their day trips efficiently. The app provides clustering recommendations based on user-defined destinations, optimizing travel time and enhancing the overall experience. Users can register, log in, and view their trip history, making it a comprehensive tool for travel enthusiasts.
