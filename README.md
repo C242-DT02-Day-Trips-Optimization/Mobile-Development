@@ -1,6 +1,6 @@
 # Roamio (Day Trips Optimization)
 
-![App Logo](https://i.postimg.cc/yY7zrGT8/1.png) <!-- Replace with your app logo URL -->
+![App Logo](https://i.postimg.cc/yY7zrGT8/1.png)
 
 ## Table of Contents
 - [Description](#description)
@@ -24,7 +24,10 @@ Roamio (Day Trips Optimization) is an Android application designed to help users
 - Responsive UI with Material Design components
 
 ## Preview
-![App Preview](https://your-preview-image-url.com/preview.png) <!-- Replace with your app preview image URL -->
+<div style="display: flex; justify-content: space-between;">
+    <img src="https://i.postimg.cc/gjSYq9Tj/preview-1.png" alt="App Preview 1" width="45%" />
+    <img src="https://i.postimg.cc/qBb0FT1M/preview-2.png" alt="App Preview 2" width="45%" />
+</div>
 
 ## Technologies Used
 - **Kotlin**: Primary programming language for Android development
@@ -58,4 +61,4 @@ To run this project locally, follow these steps:
 - **Get Recommendations**: `POST /recommend/`
 
 ## Figma Design
-You can view the design mockups for this application on Figma: [Figma Design Link](https://www.figma.com/design/nUVSpYEs1aqUGbLmz4xVPq/C242-DT02-%7C-Capstone-Project-Bizzagi?node-id=22-8&t=XrUZfGiIubuDSwL8-1) <!-- Replace with your Figma link -->
+You can view the design mockups for this application on Figma: [Figma Design Link](https://www.figma.com/design/nUVSpYEs1aqUGbLmz4xVPq/C242-DT02-%7C-Capstone-Project-Bizzagi?node-id=22-8&t=XrUZfGiIubuDSwL8-1)
